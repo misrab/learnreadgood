@@ -46,6 +46,60 @@
   flex: 1;
   padding: 2rem;
   background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.section {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1.5rem;
+}
+
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.section h2 {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.about-section sup {
+  font-size: 0.75rem;
+  margin-left: 0.15rem;
+}
+
+.about-section a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.about-section a:hover {
+  text-decoration: underline;
+}
+
+.footnotes {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  color: #4b5563;
+  font-size: 0.875rem;
+}
+
+.footnotes li {
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 768px) {

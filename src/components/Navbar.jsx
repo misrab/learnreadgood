@@ -1,10 +1,9 @@
+import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 
 const navItems = [
-  { id: 'home', label: 'Home' },
-  { id: 'lessons', label: 'Lessons' },
-  { id: 'practice', label: 'Practice' },
-  { id: 'about', label: 'About' },
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
 ]
 
 export function Navbar({ isOpen, onClose }) {
@@ -12,14 +11,17 @@ export function Navbar({ isOpen, onClose }) {
     <nav className="navbar">
       <ul className={isOpen ? 'open' : ''}>
         {navItems.map(item => (
-          <li key={item.id}>
-            <a href={`#${item.id}`} onClick={onClose}>
+          <li key={item.to}>
+            <NavLink
+              to={item.to}
+              onClick={onClose}
+              className={({ isActive }) => (isActive ? 'active' : undefined)}
+            >
               {item.label}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>
     </nav>
   )
 }
-

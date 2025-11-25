@@ -19,6 +19,11 @@
   transition: background 0.15s, color 0.15s;
 }
 
+.navbar li a.active {
+  background: #eef2ff;
+  color: #111827;
+}
+
 .navbar li a:hover {
   background: #f3f4f6;
   color: #111827;

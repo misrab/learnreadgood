@@ -1,36 +1,50 @@
 .app {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  flex-direction: column;
 }
 
-.container {
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
-  padding: 2rem;
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 4rem);
-  color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  color: #111827;
+  font-weight: 600;
+  margin: 0;
 }
 
-.subtitle {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  color: #4a5568;
-  line-height: 1.6;
-  max-width: 700px;
-  margin: 0 auto;
+.main-layout {
+  display: flex;
+  flex: 1;
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  background: #f9fafb;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 1.5rem;
+  .top-bar {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .main-layout {
+    flex-direction: column;
+  }
+
+  .content-area {
+    padding: 1rem;
   }
 }
-

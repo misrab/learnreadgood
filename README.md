@@ -57,8 +57,18 @@ Run `make help` to see all available commands:
 - `make preview` - Preview production build
 - `make clean` - Clean node_modules and dist
 
+## Features
+
+- **Multi-language support** - i18n with 6 languages (English, Spanish, French, Arabic, Chinese, Hindi)
+- **Smart language selector** - Prominent on first visit, compact afterwards
+- **Browser compatibility indicators** - Visual icons showing supported browsers
+- **First-time user detection** - Uses localStorage to track returning visitors
+- **Icon-based UI** - Designed for pre-literate users
+- **Fully responsive** - Works on all screen sizes
+
 ## Tech Stack
 
 - React 18
 - Vite 5
+- i18next & react-i18next for internationalization
 - Modern CSS with responsive design

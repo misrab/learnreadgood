@@ -5,27 +5,6 @@
   padding: 1rem 0;
 }
 
-.navbar-toggle {
-  display: none;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  margin: 0 1rem 1rem;
-}
-
-.navbar-toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: #374151;
-  margin-bottom: 5px;
-}
-
-.navbar-toggle span:last-child {
-  margin-bottom: 0;
-}
-
 .navbar ul {
   list-style: none;
   padding: 0;
@@ -50,10 +29,7 @@
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
-  }
-
-  .navbar-toggle {
-    display: block;
+    padding: 0;
   }
 
   .navbar ul {

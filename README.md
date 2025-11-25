@@ -8,6 +8,11 @@ learnreadgood.com - global literacy should be 100% in any language in the 21st c
 - Node.js (v18 or higher recommended)
 - npm
 
+### Requirements before `make dev`
+- Install dependencies once with `make install` (or `npm install`).  
+  Without this step, `make dev` will fail with errors like `sh: vite: command not found`.
+- Ensure both Node.js and npm are available on your PATH (`node -v`, `npm -v`).
+
 ### Installation
 
 ```bash
@@ -25,6 +30,8 @@ Start the development server:
 ```bash
 make dev
 ```
+
+> Tip: if you see `vite: command not found`, rerun `make install` to ensure dependencies are present.
 
 The app will be available at `http://localhost:5173`
 

@@ -4,11 +4,8 @@ import './LanguageSelector.css'
 
 const languages = [
   { code: 'en', flag: '🇬🇧', name: 'English' },
-  { code: 'es', flag: '🇪🇸', name: 'Español' },
   { code: 'fr', flag: '🇫🇷', name: 'Français' },
-  { code: 'ar', flag: '🇸🇦', name: 'العربية' },
-  { code: 'zh', flag: '🇨🇳', name: '中文' },
-  { code: 'hi', flag: '🇮🇳', name: 'हिन्दी' }
+  { code: 'ar', flag: '🇸🇦', name: 'العربية' }
 ]
 
 export function LanguageSelector({ isFirstVisit, onLanguageSelect }) {

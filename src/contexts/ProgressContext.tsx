@@ -25,6 +25,10 @@ interface ProgressContextValue {
   isActivityComplete: (sectionId: string, activityId: string) => boolean;
   getSectionProgress: (sectionId: string) => SectionProgress | undefined;
   
+  // Course params
+  getCourseParam: (courseId: string, key: string) => string | undefined;
+  setCourseParam: (courseId: string, key: string, value: string) => void;
+
   // Utility
   resetProgress: () => void;
   syncProgress: () => Promise<void>;
@@ -44,6 +48,7 @@ function createInitialProgress(language: string): UserProgress {
     completedSections: [],
     skippedSections: [],
     sectionProgress: {},
+    courseParams: {},
     createdAt: Date.now(),
     version: 1,
   };
@@ -211,6 +216,26 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     return progress?.sectionProgress[sectionId];
   };
 
+  const getCourseParam = (courseId: string, key: string): string | undefined => {
+    return progress?.courseParams?.[courseId]?.[key];
+  };
+
+  const setCourseParam = (courseId: string, key: string, value: string) => {
+    setProgress((prev) => {
+      if (!prev) return prev;
+      return {
+        ...prev,
+        courseParams: {
+          ...prev.courseParams,
+          [courseId]: {
+            ...(prev.courseParams?.[courseId] ?? {}),
+            [key]: value,
+          },
+        },
+      };
+    });
+  };
+
   // Reset all progress
   const resetProgress = () => {
     const language = progress?.language || localStorage.getItem('lrg_language') || 'en';
@@ -234,6 +259,8 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     markActivityComplete,
     isActivityComplete,
     getSectionProgress,
+    getCourseParam,
+    setCourseParam,
     resetProgress,
     syncProgress,
   };

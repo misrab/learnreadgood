@@ -4,8 +4,11 @@
 
 /**
  * Activity types available in the learning platform
+ * explore: free browsing / learn phase
+ * recognition: see the letter, identify which word matches
+ * quiz: hear the sound, pick the letter
  */
-export type ActivityType = 'listen-repeat' | 'recognition' | 'quiz';
+export type ActivityType = 'explore' | 'recognition' | 'quiz';
 
 /**
  * A single learning activity within a section
@@ -13,7 +16,7 @@ export type ActivityType = 'listen-repeat' | 'recognition' | 'quiz';
 export interface Activity {
   id: string;
   type: ActivityType;
-  content: any; // Flexible content structure based on activity type
+  content: any;
 }
 
 /**
@@ -52,12 +55,15 @@ export interface SectionProgress {
  */
 export interface UserProgress {
   userId?: string; // null/undefined for anonymous users, populated after login
-  language: string; // Current i18n language code
+  language: string; // Current i18n UI language code
   completedSections: string[]; // Array of section IDs marked as complete
   skippedSections: string[]; // Array of section IDs marked as "already known"
   currentSection?: string; // ID of section currently in progress
   sectionProgress: {
     [sectionId: string]: SectionProgress;
+  };
+  courseParams: {
+    [courseId: string]: Record<string, string>; // course-specific params e.g. { targetLanguage: 'ar' }
   };
   createdAt: number; // Timestamp when progress was first created
   lastSyncedAt?: number; // Timestamp of last server sync (for future use)

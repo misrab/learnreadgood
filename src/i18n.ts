@@ -54,6 +54,22 @@ const resources = {
         inProgress: 'In Progress',
         sectionLocked: 'Complete previous sections to unlock.',
         activitiesComingSoon: 'Activities coming soon.',
+        sectionComplete: 'Section complete!',
+        back: 'Back',
+        tapToHear: 'Tap a letter or word to hear it',
+        practiceNow: 'Practice Now',
+        findWordWith: 'Which word starts with this letter?',
+        pickTheLetter: 'Which letter did you hear?',
+        check: 'Check',
+        next: 'Next',
+        finish: 'Finish',
+        replay: 'Replay',
+        correct: 'Correct!',
+        wrong: 'Not quite',
+        letterOf: 'Letter {{current}} of {{total}}',
+        activityExplore: 'Explore',
+        activityRecognition: 'Recognition',
+        activityQuiz: 'Quiz',
       }
     }
   },
@@ -106,6 +122,22 @@ const resources = {
         inProgress: 'En Cours',
         sectionLocked: 'Complète les sections précédentes pour débloquer.',
         activitiesComingSoon: 'Activités bientôt disponibles.',
+        sectionComplete: 'Section terminée !',
+        back: 'Retour',
+        tapToHear: 'Appuie sur une lettre ou un mot pour l\'entendre',
+        practiceNow: 'Pratiquer',
+        findWordWith: 'Quel mot commence par cette lettre ?',
+        pickTheLetter: 'Quelle lettre as-tu entendue ?',
+        check: 'Vérifier',
+        next: 'Suivant',
+        finish: 'Terminer',
+        replay: 'Réécouter',
+        correct: 'Correct !',
+        wrong: 'Pas tout à fait',
+        letterOf: 'Lettre {{current}} sur {{total}}',
+        activityExplore: 'Explorer',
+        activityRecognition: 'Reconnaissance',
+        activityQuiz: 'Quiz',
       }
     }
   },
@@ -158,12 +190,31 @@ const resources = {
         inProgress: 'قيد التقدم',
         sectionLocked: 'أكمل الأقسام السابقة للفتح.',
         activitiesComingSoon: 'الأنشطة قريباً.',
+        sectionComplete: 'اكتمل القسم!',
+        back: 'رجوع',
+        tapToHear: 'اضغط على حرف أو كلمة للاستماع',
+        practiceNow: 'تدرّب الآن',
+        findWordWith: 'أيّ كلمة تبدأ بهذا الحرف؟',
+        pickTheLetter: 'أيّ حرف سمعته؟',
+        check: 'تحقق',
+        next: 'التالي',
+        finish: 'إنهاء',
+        replay: 'إعادة',
+        correct: 'صحيح!',
+        wrong: 'ليس تماماً',
+        letterOf: 'الحرف {{current}} من {{total}}',
+        activityExplore: 'استكشاف',
+        activityRecognition: 'تعرّف',
+        activityQuiz: 'اختبار',
       }
     }
   }
 }
 
-const savedLanguage = localStorage.getItem('lrg_language') || 'en'
+const supportedLanguages = ['en', 'fr', 'ar']
+const browserLang = navigator.language.split('-')[0]
+const savedLanguage = localStorage.getItem('lrg_language') ||
+  (supportedLanguages.includes(browserLang) ? browserLang : 'en')
 
 i18n
   .use(initReactI18next)

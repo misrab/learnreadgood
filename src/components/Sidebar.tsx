@@ -1,7 +1,8 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { allCourses, readingCourse } from '../data/courses'
+import { buildReadingCourse, READING_COURSE_ID, READING_LANGUAGES, ReadingLanguage } from '../data/courses'
 import { useSectionStatus } from '../hooks/useSectionStatus'
+import { useProgress } from '../contexts/ProgressContext'
 import './Sidebar.css'
 
 interface SidebarProps {
@@ -12,34 +13,39 @@ interface SidebarProps {
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { t } = useTranslation()
   const { getSectionStatus } = useSectionStatus()
-  const navigate = useNavigate()
+  const { getCourseParam, setCourseParam } = useProgress()
 
-  const handleCourseChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const course = allCourses.find(c => c.id === e.target.value)
-    if (course?.sections[0]) {
-      navigate(`/section/${course.sections[0].id}`)
-      onClose()
-    }
+  const targetLanguage = (getCourseParam(READING_COURSE_ID, 'targetLanguage') ?? 'ar') as ReadingLanguage
+  const course = buildReadingCourse(targetLanguage)
+
+  const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCourseParam(READING_COURSE_ID, 'targetLanguage', e.target.value)
   }
 
   return (
     <>
-      {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
+      <div
+        className={`sidebar-overlay${isOpen ? ' visible' : ''}`}
+        onClick={onClose}
+      />
       <nav className={`sidebar${isOpen ? ' open' : ''}`}>
         <div className="sidebar-top">
-          <select
-            className="course-select"
-            defaultValue={readingCourse.id}
-            onChange={handleCourseChange}
-            aria-label={t('nav.selectCourse')}
-          >
-            {allCourses.map(course => (
-              <option key={course.id} value={course.id}>{t(course.nameKey)}</option>
-            ))}
-          </select>
+          <div className="course-header">
+            <span className="course-name">{t('course.reading.name')}</span>
+            <select
+              className="lang-select"
+              value={targetLanguage}
+              onChange={handleLangChange}
+              aria-label="Learning language"
+            >
+              {READING_LANGUAGES.map(l => (
+                <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
+              ))}
+            </select>
+          </div>
 
           <ul className="section-list">
-            {readingCourse.sections.map(section => {
+            {course.sections.map(section => {
               const status = getSectionStatus(section.id, section.order)
               const isLocked = status === 'locked'
               const label = (status === 'completed' || status === 'skipped' ? '✓ ' : '') + t(section.nameKey)

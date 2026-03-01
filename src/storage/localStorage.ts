@@ -77,6 +77,7 @@ export class LocalStorageAdapter implements StorageAdapter {
       skippedSections: oldProgress.skippedSections || [],
       currentSection: oldProgress.currentSection,
       sectionProgress: oldProgress.sectionProgress || {},
+      courseParams: oldProgress.courseParams || {},
       createdAt: oldProgress.createdAt || Date.now(),
       lastSyncedAt: oldProgress.lastSyncedAt,
       version: STORAGE_VERSION,

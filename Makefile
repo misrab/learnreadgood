@@ -1,4 +1,4 @@
-.PHONY: install dev build preview clean help
+.PHONY: install dev build preview clean check help
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -11,6 +11,9 @@ install: ## Install dependencies
 
 dev: ## Start development server
 	npm run dev
+
+check: ## Type-check the whole project (catches broken imports etc.)
+	npx tsc --noEmit
 
 build: ## Build for production
 	npm run build

@@ -1,16 +1,18 @@
 import { useProgress } from '../contexts/ProgressContext'
-import { readingCourse } from '../data/courses'
+import { buildReadingCourse, READING_COURSE_ID, ReadingLanguage } from '../data/courses'
 import { SectionStatus } from '../types'
 
 export function useSectionStatus() {
-  const { isSectionComplete, isSectionSkipped, getSectionProgress } = useProgress()
+  const { isSectionComplete, isSectionSkipped, getSectionProgress, getCourseParam } = useProgress()
 
   const getSectionStatus = (sectionId: string, order: number): SectionStatus => {
     if (isSectionComplete(sectionId)) {
       return isSectionSkipped(sectionId) ? 'skipped' : 'completed'
     }
     if (order > 1) {
-      const prev = readingCourse.sections[order - 2]
+      const targetLanguage = (getCourseParam(READING_COURSE_ID, 'targetLanguage') ?? 'ar') as ReadingLanguage
+      const course = buildReadingCourse(targetLanguage)
+      const prev = course.sections[order - 2]
       if (prev && !isSectionComplete(prev.id)) return 'locked'
     }
     const progress = getSectionProgress(sectionId)

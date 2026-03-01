@@ -7,13 +7,13 @@ import { SectionView } from './pages/SectionView'
 import { About } from './pages/About'
 import { Terms } from './pages/Terms'
 import { Privacy } from './pages/Privacy'
-import { readingCourse } from './data/courses'
+import { buildReadingCourse } from './data/courses'
 import './App.css'
 
 function App() {
   const { t } = useTranslation()
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const firstSection = readingCourse.sections[0]
+  const [sidebarOpen, setSidebarOpen] = useState(false) // default collapsed
+  const firstSection = buildReadingCourse().sections[0]
 
   return (
     <div className="app">

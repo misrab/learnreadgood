@@ -6,7 +6,12 @@ const navItems = [
   { to: '/about', label: 'About' },
 ]
 
-export function Navbar({ isOpen, onClose }) {
+interface NavbarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function Navbar({ isOpen, onClose }: NavbarProps) {
   return (
     <nav className="navbar">
       <ul className={isOpen ? 'open' : ''}>

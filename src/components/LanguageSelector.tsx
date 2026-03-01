@@ -8,12 +8,17 @@ const languages = [
   { code: 'ar', flag: '🇸🇦', name: 'العربية' }
 ]
 
-export function LanguageSelector({ isFirstVisit, onLanguageSelect }) {
+interface LanguageSelectorProps {
+  isFirstVisit?: boolean;
+  onLanguageSelect?: () => void;
+}
+
+export function LanguageSelector({ isFirstVisit: _isFirstVisit, onLanguageSelect }: LanguageSelectorProps) {
   const { i18n } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
   const currentLang = languages.find(lang => lang.code === i18n.language) || languages[0]
 
-  const handleLanguageChange = (langCode) => {
+  const handleLanguageChange = (langCode: string) => {
     i18n.changeLanguage(langCode)
     localStorage.setItem('lrg_language', langCode)
     setIsOpen(false)

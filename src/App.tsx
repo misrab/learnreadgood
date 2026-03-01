@@ -1,39 +1,45 @@
 import { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Routes, Route } from 'react-router-dom'
+import { Sidebar } from './components/Sidebar'
 import { LanguageSelector } from './components/LanguageSelector'
-import { Navbar } from './components/Navbar'
-import { Home } from './pages/Home'
+import { SectionView } from './pages/SectionView'
 import { About } from './pages/About'
+import { Terms } from './pages/Terms'
+import { Privacy } from './pages/Privacy'
+import { readingCourse } from './data/courses'
 import './App.css'
 
 function App() {
   const { t } = useTranslation()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const firstSection = readingCourse.sections[0]
 
   return (
     <div className="app">
       <header className="top-bar">
         <button
-          className="mobile-menu-toggle"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="menu-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-label="Toggle menu"
-          aria-expanded={mobileMenuOpen}
         >
           <span />
           <span />
           <span />
         </button>
-        <h1 className="title">{t('appName')}</h1>
+        <span className="app-title">{t('appName')}</span>
         <LanguageSelector />
       </header>
 
       <div className="main-layout">
-        <Navbar isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
-        <main className="content-area" aria-label="Main content">
+        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+        <main className="content-area">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to={`/section/${firstSection.id}`} replace />} />
+            <Route path="/section/:sectionId" element={<SectionView />} />
             <Route path="/about" element={<About />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Routes>
         </main>
       </div>

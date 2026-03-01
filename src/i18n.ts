@@ -35,13 +35,25 @@ const resources = {
       },
       
       // UI elements
+      nav: {
+        about: 'About',
+        selectCourse: 'Select Course',
+      },
+      footer: {
+        copyright: '© LearnReadGood.com 2026',
+        terms: 'Terms',
+        privacy: 'Privacy Policy',
+      },
       ui: {
         start: 'Start',
         continue: 'Continue',
         iKnowThis: 'I know this already',
+        review: 'Review',
         completed: 'Completed',
         locked: 'Locked',
-        inProgress: 'In Progress'
+        inProgress: 'In Progress',
+        sectionLocked: 'Complete previous sections to unlock.',
+        activitiesComingSoon: 'Activities coming soon.',
       }
     }
   },
@@ -75,13 +87,25 @@ const resources = {
         }
       },
       
+      nav: {
+        about: 'À propos',
+        selectCourse: 'Choisir un cours',
+      },
+      footer: {
+        copyright: '© LearnReadGood.com 2026',
+        terms: 'Conditions',
+        privacy: 'Confidentialité',
+      },
       ui: {
         start: 'Commencer',
         continue: 'Continuer',
         iKnowThis: 'Je sais déjà',
+        review: 'Revoir',
         completed: 'Terminé',
         locked: 'Verrouillé',
-        inProgress: 'En Cours'
+        inProgress: 'En Cours',
+        sectionLocked: 'Complète les sections précédentes pour débloquer.',
+        activitiesComingSoon: 'Activités bientôt disponibles.',
       }
     }
   },
@@ -115,13 +139,25 @@ const resources = {
         }
       },
       
+      nav: {
+        about: 'حول',
+        selectCourse: 'اختر الدورة',
+      },
+      footer: {
+        copyright: '© LearnReadGood.com 2026',
+        terms: 'الشروط',
+        privacy: 'الخصوصية',
+      },
       ui: {
         start: 'ابدأ',
         continue: 'استمر',
         iKnowThis: 'أعرف هذا بالفعل',
+        review: 'مراجعة',
         completed: 'مكتمل',
         locked: 'مقفل',
-        inProgress: 'قيد التقدم'
+        inProgress: 'قيد التقدم',
+        sectionLocked: 'أكمل الأقسام السابقة للفتح.',
+        activitiesComingSoon: 'الأنشطة قريباً.',
       }
     }
   }

@@ -68,6 +68,8 @@ const resources = {
         activityQuiz: 'Quiz',
         showTranslation: 'Show translation',
         hideTranslation: 'Hide translation',
+        tapToRead: 'Tap to read aloud',
+        playing: 'Playing…',
       }
     }
   },
@@ -134,6 +136,8 @@ const resources = {
         activityQuiz: 'Quiz',
         showTranslation: 'Voir la traduction',
         hideTranslation: 'Cacher la traduction',
+        tapToRead: 'Appuyer pour lire à voix haute',
+        playing: 'Lecture…',
       }
     }
   },
@@ -200,6 +204,8 @@ const resources = {
         activityQuiz: 'اختبار',
         showTranslation: 'عرض الترجمة',
         hideTranslation: 'إخفاء الترجمة',
+        tapToRead: 'اضغط للقراءة بصوت عالٍ',
+        playing: 'جاري التشغيل…',
       }
     }
   }

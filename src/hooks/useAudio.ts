@@ -42,7 +42,12 @@ export function useAudio() {
     }
   }, [voicesReady])
 
-  const speak = useCallback((text: string, lang = 'ar-SA', rate = 0.8) => {
+  const speak = useCallback((
+    text: string,
+    lang = 'ar-SA',
+    rate = 0.8,
+    onBoundary?: (charIndex: number, charLength: number) => void,
+  ) => {
     const synth = window.speechSynthesis
     synth.cancel()
     clearTimeout(timerRef.current)
@@ -54,14 +59,17 @@ export function useAudio() {
     if (voice) utterance.voice = voice
 
     utterance.onstart = () => setSpeaking(true)
-    utterance.onend = () => setSpeaking(false)
-    utterance.onerror = () => setSpeaking(false)
+    utterance.onend = () => { setSpeaking(false); onBoundary?.(-1, 0) }
+    utterance.onerror = () => { setSpeaking(false); onBoundary?.(-1, 0) }
+
+    if (onBoundary) {
+      utterance.onboundary = (e) => {
+        if (e.name === 'word') onBoundary(e.charIndex, e.charLength)
+      }
+    }
 
     utteranceRef.current = utterance
 
-    // Short timer lets the browser finish processing cancel() before speaking.
-    // Unlike the old double-rAF approach, setTimeout fires reliably even when
-    // the tab is throttled or the main thread is busy.
     timerRef.current = window.setTimeout(() => synth.speak(utterance), 10)
   }, [])
 

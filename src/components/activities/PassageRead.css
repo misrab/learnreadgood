@@ -25,22 +25,47 @@
 }
 
 .passage-read__text {
-  display: block;
   width: 100%;
   font-size: 1.2rem;
-  line-height: 1.8;
+  line-height: 2;
   color: #111827;
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   padding: 1rem 1.25rem;
-  cursor: pointer;
   text-align: start;
   font-family: inherit;
-  transition: background 0.1s;
+  margin-bottom: 0.75rem;
 }
 
-.passage-read__text:hover { background: #eef2ff; }
+.passage-read__text--playing {
+  border-color: #93c5fd;
+}
+
+.passage-read__play-btn {
+  display: block;
+  width: 100%;
+  padding: 0.6rem;
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: background 0.15s;
+}
+
+.passage-read__play-btn:hover { background: #1e40af; }
+.passage-read__play-btn:disabled { background: #93c5fd; cursor: default; }
+
+.word--active {
+  background: #dbeafe;
+  border-radius: 3px;
+  padding: 0 2px;
+  transition: background 0.08s;
+}
 
 .passage-read__toggle {
   margin-top: 0.75rem;

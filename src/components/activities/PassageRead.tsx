@@ -19,15 +19,43 @@ function ChevronRight() {
   )
 }
 
+function tokenize(text: string) {
+  const tokens: { text: string; start: number; end: number }[] = []
+  let offset = 0
+  for (const part of text.split(' ')) {
+    if (part) tokens.push({ text: part, start: offset, end: offset + part.length })
+    offset += part.length + 1
+  }
+  return tokens
+}
+
 export function PassageRead({ passages, lang, dir, onComplete }: Props) {
   const { t } = useTranslation()
   const { speak, voicesReady } = useAudio()
   const [idx, setIdx] = useState(0)
   const [showTranslation, setShowTranslation] = useState(false)
+  const [activeChar, setActiveChar] = useState(-1)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const passage = passages[idx]
+  const tokens = tokenize(passage.text)
+
+  const handlePlay = () => {
+    setActiveChar(-1)
+    setIsPlaying(true)
+    speak(passage.text, lang, 0.8, (charIndex) => {
+      if (charIndex < 0) {
+        setIsPlaying(false)
+        setActiveChar(-1)
+      } else {
+        setActiveChar(charIndex)
+      }
+    })
+  }
 
   const handleNext = () => {
+    setIsPlaying(false)
+    setActiveChar(-1)
     if (idx + 1 >= passages.length) {
       onComplete()
     } else {
@@ -47,13 +75,26 @@ export function PassageRead({ passages, lang, dir, onComplete }: Props) {
         <h3 className="passage-read__title" dir={dir}>{passage.title}</h3>
         <p className="passage-read__title-sub">{passage.titleTranslation}</p>
 
-        <button
-          className="passage-read__text"
-          onClick={() => speak(passage.text, lang)}
-          disabled={!voicesReady}
+        <div
+          className={`passage-read__text${isPlaying ? ' passage-read__text--playing' : ''}`}
           dir={dir}
         >
-          {passage.text}
+          {tokens.map((tok, ti) => {
+            const isActive = activeChar >= tok.start && activeChar < tok.end
+            return (
+              <span key={ti} className={isActive ? 'word--active' : undefined}>
+                {tok.text}{ti < tokens.length - 1 ? ' ' : ''}
+              </span>
+            )
+          })}
+        </div>
+
+        <button
+          className="passage-read__play-btn"
+          onClick={handlePlay}
+          disabled={!voicesReady}
+        >
+          {isPlaying ? t('ui.playing') : t('ui.tapToRead')}
         </button>
 
         <button

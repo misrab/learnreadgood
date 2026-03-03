@@ -26,7 +26,14 @@
 .sentence-card__text {
   font-size: 1.15rem;
   color: #111827;
-  line-height: 1.5;
+  line-height: 1.8;
+}
+
+.word--active {
+  background: #dbeafe;
+  border-radius: 3px;
+  padding: 0 2px;
+  transition: background 0.1s;
 }
 
 .sentence-card__translation {

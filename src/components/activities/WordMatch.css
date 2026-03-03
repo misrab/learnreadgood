@@ -1,0 +1,75 @@
+.word-match {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.word-match__display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f9fafb;
+  cursor: pointer;
+  align-self: flex-start;
+  min-width: 140px;
+  font-family: inherit;
+  transition: background 0.1s;
+}
+
+.word-match__display:hover {
+  background: #eef2ff;
+}
+
+.word-match__big-text {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.word-match__roman {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.word-match__options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.word-match__option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  font-family: inherit;
+}
+
+.word-match__option:hover:not(:disabled) {
+  border-color: #a5b4fc;
+  background: #f5f3ff;
+}
+
+.word-match__option.correct { border-color: #16a34a; background: #dcfce7; }
+.word-match__option.wrong { border-color: #dc2626; background: #fee2e2; }
+.word-match__option.correct-reveal { border-color: #16a34a; background: #f0fdf4; opacity: 0.6; }
+
+.word-match__option-text {
+  font-size: 1rem;
+  color: #111827;
+  flex: 1;
+  text-align: center;
+}
+
+.word-match__option-icon { display: flex; align-items: center; }
+.word-match__option.correct .word-match__option-icon { color: #16a34a; }
+.word-match__option.wrong .word-match__option-icon { color: #dc2626; }

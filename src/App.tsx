@@ -4,16 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { Sidebar } from './components/Sidebar'
 import { LanguageSelector } from './components/LanguageSelector'
 import { SectionView } from './pages/SectionView'
+import { CourseHome } from './pages/CourseHome'
 import { About } from './pages/About'
 import { Terms } from './pages/Terms'
 import { Privacy } from './pages/Privacy'
-import { buildReadingCourse } from './data/courses'
 import './App.css'
 
 function App() {
   const { t } = useTranslation()
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const firstSection = buildReadingCourse().sections[0]
 
   return (
     <div className="app">
@@ -35,7 +34,8 @@ function App() {
         <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
         <main className="content-area">
           <Routes>
-            <Route path="/" element={<Navigate to={`/section/${firstSection.id}`} replace />} />
+            <Route path="/" element={<Navigate to="/course/reading" replace />} />
+            <Route path="/course/reading" element={<CourseHome />} />
             <Route path="/section/:sectionId" element={<SectionView />} />
             <Route path="/about" element={<About />} />
             <Route path="/terms" element={<Terms />} />

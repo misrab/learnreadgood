@@ -8,7 +8,11 @@
  * recognition: see the letter, identify which word matches
  * quiz: hear the sound, pick the letter
  */
-export type ActivityType = 'explore' | 'recognition' | 'quiz';
+export type ActivityType =
+  | 'explore' | 'recognition' | 'quiz'
+  | 'word-explore' | 'word-match' | 'word-quiz'
+  | 'sentence-explore' | 'sentence-match' | 'sentence-quiz'
+  | 'passage-read' | 'passage-quiz';
 
 /**
  * A single learning activity within a section

@@ -11,7 +11,8 @@ const resources = {
         reading: {
           name: 'Reading Basics',
           description: 'Learn to read from the alphabet to sentences'
-        }
+        },
+        selectLanguage: 'Choose a language to learn to read:',
       },
       
       // Sections
@@ -36,6 +37,7 @@ const resources = {
       
       // UI elements
       nav: {
+        overview: 'Overview',
         about: 'About',
         selectCourse: 'Select Course',
       },
@@ -61,7 +63,11 @@ const resources = {
         replay: 'Play',
         activityExplore: 'Explore',
         activityRecognition: 'Recognition',
+        activityMatch: 'Match',
+        activityRead: 'Read',
         activityQuiz: 'Quiz',
+        showTranslation: 'Show translation',
+        hideTranslation: 'Hide translation',
       }
     }
   },
@@ -73,7 +79,8 @@ const resources = {
         reading: {
           name: 'Lecture de Base',
           description: "Apprendre à lire de l'alphabet aux phrases"
-        }
+        },
+        selectLanguage: 'Choisissez une langue à apprendre à lire :',
       },
       
       section: {
@@ -96,6 +103,7 @@ const resources = {
       },
       
       nav: {
+        overview: 'Aperçu',
         about: 'À propos',
         selectCourse: 'Choisir un cours',
       },
@@ -121,7 +129,11 @@ const resources = {
         replay: 'Écouter',
         activityExplore: 'Explorer',
         activityRecognition: 'Reconnaissance',
+        activityMatch: 'Associer',
+        activityRead: 'Lire',
         activityQuiz: 'Quiz',
+        showTranslation: 'Voir la traduction',
+        hideTranslation: 'Cacher la traduction',
       }
     }
   },
@@ -133,7 +145,8 @@ const resources = {
         reading: {
           name: 'أساسيات القراءة',
           description: 'تعلم القراءة من الحروف إلى الجمل'
-        }
+        },
+        selectLanguage: 'اختر لغة لتعلم القراءة:',
       },
       
       section: {
@@ -156,6 +169,7 @@ const resources = {
       },
       
       nav: {
+        overview: 'نظرة عامة',
         about: 'حول',
         selectCourse: 'اختر الدورة',
       },
@@ -181,7 +195,11 @@ const resources = {
         replay: 'تشغيل',
         activityExplore: 'استكشاف',
         activityRecognition: 'تعرّف',
+        activityMatch: 'مطابقة',
+        activityRead: 'قراءة',
         activityQuiz: 'اختبار',
+        showTranslation: 'عرض الترجمة',
+        hideTranslation: 'إخفاء الترجمة',
       }
     }
   }

@@ -1,0 +1,36 @@
+.sentence-explore__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sentence-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.15s;
+  text-align: start;
+  font-family: inherit;
+}
+
+.sentence-card:hover {
+  background: #f3f4f6;
+  border-color: #a5b4fc;
+}
+
+.sentence-card__text {
+  font-size: 1.15rem;
+  color: #111827;
+  line-height: 1.5;
+}
+
+.sentence-card__translation {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  line-height: 1.4;
+}

@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { buildReadingCourse, READING_COURSE_ID, READING_LANGUAGES, ReadingLanguage } from '../data/courses'
-import { useSectionStatus } from '../hooks/useSectionStatus'
+import { buildReadingCourse, READING_COURSE_ID, ReadingLanguage } from '../data/courses'
 import { useProgress } from '../contexts/ProgressContext'
 import './Sidebar.css'
 
@@ -12,15 +11,10 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { t } = useTranslation()
-  const { getSectionStatus } = useSectionStatus()
-  const { getCourseParam, setCourseParam } = useProgress()
+  const { isSectionComplete, getCourseParam } = useProgress()
 
   const targetLanguage = (getCourseParam(READING_COURSE_ID, 'targetLanguage') ?? 'ar') as ReadingLanguage
   const course = buildReadingCourse(targetLanguage)
-
-  const handleLangChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCourseParam(READING_COURSE_ID, 'targetLanguage', e.target.value)
-  }
 
   return (
     <>
@@ -30,40 +24,27 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       />
       <nav className={`sidebar${isOpen ? ' open' : ''}`}>
         <div className="sidebar-top">
-          <div className="course-header">
-            <span className="course-name">{t('course.reading.name')}</span>
-            <select
-              className="lang-select"
-              value={targetLanguage}
-              onChange={handleLangChange}
-              aria-label="Learning language"
-            >
-              {READING_LANGUAGES.map(l => (
-                <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
-              ))}
-            </select>
-          </div>
-
           <ul className="section-list">
+            <li>
+              <NavLink
+                to="/course/reading"
+                className={({ isActive }) => `section-link${isActive ? ' active' : ''}`}
+              >
+                {t('nav.overview')}
+              </NavLink>
+            </li>
             {course.sections.map(section => {
-              const status = getSectionStatus(section.id, section.order)
-              const isLocked = status === 'locked'
-              const label = (status === 'completed' || status === 'skipped' ? '✓ ' : '') + t(section.nameKey)
-
+              const done = isSectionComplete(section.id)
               return (
                 <li key={section.id}>
-                  {isLocked ? (
-                    <span className="section-link locked">{t(section.nameKey)}</span>
-                  ) : (
-                    <NavLink
-                      to={`/section/${section.id}`}
-                      className={({ isActive }) =>
-                        `section-link ${status}${isActive ? ' active' : ''}`
-                      }
-                    >
-                      {label}
-                    </NavLink>
-                  )}
+                  <NavLink
+                    to={`/section/${section.id}`}
+                    className={({ isActive }) =>
+                      `section-link${done ? ' completed' : ''}${isActive ? ' active' : ''}`
+                    }
+                  >
+                    {done ? '✓ ' : ''}{t(section.nameKey)}
+                  </NavLink>
                 </li>
               )
             })}

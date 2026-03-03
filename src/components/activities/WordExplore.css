@@ -1,0 +1,52 @@
+.word-explore__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.word-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.15s;
+  font-family: inherit;
+}
+
+.word-card:hover {
+  background: #f3f4f6;
+  border-color: #a5b4fc;
+}
+
+.word-card__text {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.word-card__roman {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+
+.word-card__meaning {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 480px) {
+  .word-explore__grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .word-card__text {
+    font-size: 1.2rem;
+  }
+}

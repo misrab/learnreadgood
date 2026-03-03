@@ -24,34 +24,6 @@
   flex-direction: column;
 }
 
-.course-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 1rem 0.75rem;
-  gap: 0.5rem;
-}
-
-.course-name {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #374151;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.lang-select {
-  padding: 0.25rem 0.4rem;
-  font-size: 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  background: white;
-  color: #111827;
-  cursor: pointer;
-  flex-shrink: 0;
-}
-
 .section-list {
   list-style: none;
   margin: 0;
@@ -79,18 +51,8 @@
   font-weight: 500;
 }
 
-.section-link.locked {
-  color: #d1d5db;
-  cursor: default;
-}
-
-.section-link.completed,
-.section-link.skipped {
+.section-link.completed {
   color: #9ca3af;
-}
-
-.section-link.in-progress {
-  font-weight: 500;
 }
 
 .sidebar-bottom {

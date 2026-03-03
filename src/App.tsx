@@ -12,7 +12,7 @@ import './App.css'
 
 function App() {
   const { t } = useTranslation()
-  const [sidebarOpen, setSidebarOpen] = useState(false) // default collapsed
+  const [sidebarOpen, setSidebarOpen] = useState(true)
   const firstSection = buildReadingCourse().sections[0]
 
   return (

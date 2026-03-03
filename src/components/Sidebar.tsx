@@ -57,7 +57,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   ) : (
                     <NavLink
                       to={`/section/${section.id}`}
-                      onClick={onClose}
                       className={({ isActive }) =>
                         `section-link ${status}${isActive ? ' active' : ''}`
                       }
@@ -74,7 +73,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="sidebar-bottom">
           <NavLink
             to="/about"
-            onClick={onClose}
             className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}
           >
             {t('nav.about')}
@@ -83,9 +81,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <footer className="sidebar-footer">
             <p>{t('footer.copyright')}</p>
             <p>
-              <NavLink to="/terms" onClick={onClose}>{t('footer.terms')}</NavLink>
+              <NavLink to="/terms">{t('footer.terms')}</NavLink>
               {' · '}
-              <NavLink to="/privacy" onClick={onClose}>{t('footer.privacy')}</NavLink>
+              <NavLink to="/privacy">{t('footer.privacy')}</NavLink>
             </p>
           </footer>
         </div>

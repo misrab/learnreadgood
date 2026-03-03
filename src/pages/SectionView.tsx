@@ -79,13 +79,13 @@ export function SectionView() {
 
         <div className="activity-tabs">
           {section.activities.map((activity, i) => (
-              <button
-                key={activity.id}
-                className={`activity-tab${i === activeIdx ? ' active' : ''}`}
-                onClick={() => setActiveIdx(i)}
-              >
-                {t(ACTIVITY_LABELS[activity.type] ?? activity.type)}
-              </button>
+            <button
+              key={activity.id}
+              className={`activity-tab${i === activeIdx ? ' active' : ''}`}
+              onClick={() => setActiveIdx(i)}
+            >
+              {t(ACTIVITY_LABELS[activity.type] ?? activity.type)}
+            </button>
           ))}
         </div>
 

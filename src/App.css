@@ -269,6 +269,52 @@
   color: #1d4ed8;
 }
 
+/* Activity nav — shared */
+.activity-nav {
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 0 0.5rem;
+}
+
+.activity-nav--explore {
+  padding-top: 2.5rem;
+}
+
+.nav-arrow-btn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.nav-arrow-btn:hover {
+  background: #1e40af;
+  transform: scale(1.05);
+}
+
+.nav-arrow-btn--correct {
+  background: #16a34a;
+}
+
+.nav-arrow-btn--correct:hover {
+  background: #15803d;
+}
+
+.nav-arrow-btn--wrong {
+  background: #dc2626;
+}
+
+.nav-arrow-btn--wrong:hover {
+  background: #b91c1c;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .content-area {

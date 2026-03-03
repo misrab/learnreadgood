@@ -20,7 +20,7 @@ export function SectionView() {
   const { getSectionStatus } = useSectionStatus()
   const {
     markSectionSkipped, markSectionComplete, markActivityComplete,
-    isLoading, getCourseParam,
+    getCourseParam,
   } = useProgress()
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -32,10 +32,6 @@ export function SectionView() {
 
   if (!section) {
     return <Navigate to={`/section/${course.sections[0].id}`} replace />
-  }
-
-  if (isLoading) {
-    return <div className="section-view"><p className="muted">Loading...</p></div>
   }
 
   const status = getSectionStatus(section.id, section.order)

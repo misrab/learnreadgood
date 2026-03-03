@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-// Prefer native OS (localService) voices — more reliable than online Google voices
 function getBestVoice(lang: string): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices()
   const langLower = lang.toLowerCase()
@@ -16,10 +15,12 @@ function getBestVoice(lang: string): SpeechSynthesisVoice | null {
 }
 
 export function useAudio() {
-  // Initialize synchronously — voices may already be loaded on mount
   const [voicesReady, setVoicesReady] = useState(
     () => window.speechSynthesis.getVoices().length > 0
   )
+  const [speaking, setSpeaking] = useState(false)
+  const timerRef = useRef<number>(0)
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null)
 
   useEffect(() => {
     if (voicesReady) return
@@ -28,20 +29,48 @@ export function useAudio() {
       if (synth.getVoices().length > 0) setVoicesReady(true)
     }
     synth.addEventListener('voiceschanged', onVoicesChanged)
-    return () => synth.removeEventListener('voiceschanged', onVoicesChanged)
+    // Poll fallback — some browsers never fire voiceschanged
+    const poll = setInterval(() => {
+      if (synth.getVoices().length > 0) {
+        setVoicesReady(true)
+        clearInterval(poll)
+      }
+    }, 100)
+    return () => {
+      synth.removeEventListener('voiceschanged', onVoicesChanged)
+      clearInterval(poll)
+    }
   }, [voicesReady])
 
   const speak = useCallback((text: string, lang = 'ar-SA', rate = 0.8) => {
     const synth = window.speechSynthesis
     synth.cancel()
+    clearTimeout(timerRef.current)
+
     const utterance = new SpeechSynthesisUtterance(text)
     utterance.lang = lang
     utterance.rate = rate
     const voice = getBestVoice(lang)
     if (voice) utterance.voice = voice
-    // Two rAF give Chrome exactly one rendering cycle to process cancel() before speak()
-    requestAnimationFrame(() => requestAnimationFrame(() => synth.speak(utterance)))
+
+    utterance.onstart = () => setSpeaking(true)
+    utterance.onend = () => setSpeaking(false)
+    utterance.onerror = () => setSpeaking(false)
+
+    utteranceRef.current = utterance
+
+    // Short timer lets the browser finish processing cancel() before speaking.
+    // Unlike the old double-rAF approach, setTimeout fires reliably even when
+    // the tab is throttled or the main thread is busy.
+    timerRef.current = window.setTimeout(() => synth.speak(utterance), 10)
   }, [])
 
-  return { speak, voicesReady }
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerRef.current)
+      window.speechSynthesis.cancel()
+    }
+  }, [])
+
+  return { speak, voicesReady, speaking }
 }

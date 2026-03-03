@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { AlphabetLetter } from '../../data/alphabets/ar'
 import { useAudio } from '../../hooks/useAudio'
 import './AlphabetExplore.css'
@@ -10,13 +9,19 @@ interface Props {
   onComplete: () => void
 }
 
+function ChevronRight() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="24" height="24" aria-hidden="true">
+      <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+}
+
 export function AlphabetExplore({ letters, lang, dir, onComplete }: Props) {
-  const { t } = useTranslation()
   const { speak, voicesReady } = useAudio()
 
   return (
     <div className="explore">
-      <p className="explore__hint">{voicesReady ? t('ui.tapToHear') : '⏳'}</p>
       <div className="explore__grid">
         {letters.map((l) => (
           <div key={l.letter} className="letter-card">
@@ -46,9 +51,9 @@ export function AlphabetExplore({ letters, lang, dir, onComplete }: Props) {
           </div>
         ))}
       </div>
-      <div className="explore__footer">
-        <button className="btn-primary" onClick={onComplete}>
-          {t('ui.practiceNow')} →
+      <div className="activity-nav activity-nav--explore">
+        <button className="nav-arrow-btn" onClick={onComplete}>
+          <ChevronRight />
         </button>
       </div>
     </div>

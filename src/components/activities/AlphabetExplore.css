@@ -1,9 +1,3 @@
-.explore__hint {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-bottom: 1.25rem;
-}
-
 .explore__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
